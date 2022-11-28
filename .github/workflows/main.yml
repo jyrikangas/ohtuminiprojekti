@@ -19,7 +19,7 @@ jobs:
       - name: Install Poetry
         run: pip install poetry
       - name: Setup chromedriver
-        uses: nanasess/setup-chromedriver@main
+        uses: nanasess/setup-chromedriver@master
       - run: |
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
