@@ -18,11 +18,17 @@ Open And Configure Browser
 Home Page Should Be Open
     Title Should Be  Ohtuminiprojekti
 
+References Page Should Be Open
+    Title Should Be  Viitteet
+
 Add References Page Should Be Open
     Title Should Be  Lisää viite
 
 Go To Home Page
     Go To  ${HOME URL}
+
+Go To References Page
+    Go To  ${REFERENCES URL}
 
 Go To Add References Page
     Go To  ${ADD URL}
