@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 from references_repository import get_references, add_book
+from database import get_db_connection
 
 app = Flask(__name__, template_folder='templates')
 
@@ -10,8 +11,8 @@ def index():
 
 @app.route("/viitteet")
 def list_references():
-    references = get_references()
-    print(references)
+    
+    references = get_references(get_db_connection())
     return render_template("viitteet.html", viitteet=references)
 
 

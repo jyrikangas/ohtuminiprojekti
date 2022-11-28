@@ -2,11 +2,11 @@ from database import get_db_connection
 
 
 ##palauttaa kaikki viitteet jossain muodossa
-def get_references():
-    database_connection = get_db_connection()
+def get_references(db_conn):
+    database_connection = db_conn
     cursor = database_connection.cursor()
 
-    cursor.execute("SELECT * FROM book;")
+    cursor.execute("SELECT (author, title, year, publisher) FROM book;")
     references = cursor.fetchall()
     return references
 

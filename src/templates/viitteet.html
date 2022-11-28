@@ -2,7 +2,7 @@
 <div>
     <ul>
         {% for viite in viitteet %}
-        <li> {{ viite }} </li>
+        <li> {{viite[0]+": "+ viite[1], viite[2], viite[3]}} </li>
         {% endfor %}
     </ul>
 </div>
