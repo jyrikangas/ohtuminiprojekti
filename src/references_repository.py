@@ -10,4 +10,13 @@ def get_references():
     references = cursor.fetchall()
     return references
 
+
+def add_book(author, title, year, publisher):
+    conn = get_db_connection()
+    conn.execute(
+        'INSERT INTO book (author, title, year, publisher) VALUES (?, ?, ?, ?)',
+        (author, title, year, publisher)
+    )
+    conn.commit()
+    conn.close()
 ##tänne metodi jolla voi lisätä viitteitä
