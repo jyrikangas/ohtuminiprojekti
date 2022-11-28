@@ -11,4 +11,5 @@ def index():
 @app.route("/viitteet")
 def list_references():
     references = get_references()
+    print(references)
     return render_template("viitteet.html", viitteet=references)
