@@ -7,7 +7,7 @@ ${BROWSER}  headlesschrome
 ${DELAY}  0 seconds
 ${HOME URL}  http://${SERVER}
 ${REFERENCES URL}  http://${SERVER}/viitteet
-${ADD URL}  http://${SERVER}/lisaa
+${ADD URL}  http://${SERVER}/lisaa_viite
 
 *** Keywords ***
 Open And Configure Browser
@@ -19,4 +19,4 @@ Home Page Should Be Open
     Title Should Be  Ohtuminiprojekti
 
 Go To Home Page
-    Go To {$REFERENCES URL}
+    Go To  ${HOME URL}
