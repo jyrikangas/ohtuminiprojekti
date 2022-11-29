@@ -4,7 +4,7 @@
 
 # Linkit 
 
-- [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. Välilehdellä 1. product backlog, välilehdellä 2. sprint backlog ja sprintin burndown -käyrä
+- [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. Välilehdellä 1. product backlog, välilehdellä 2. sprint backlog ja sprintin burndown -käyrä.
 
 # Definition of done
 
