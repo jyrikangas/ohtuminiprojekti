@@ -18,6 +18,10 @@
   poetry install
   ``` 
   4. Siirry kansioon src
+  5. Aja init_db.py komennolla:
+  ```bash
+  python3 init_db.py
+  ```
   3. Siirry virtuaaliympäristöön komennolla:
   ```bash
   poetry shell
