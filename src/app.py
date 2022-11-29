@@ -23,7 +23,7 @@ def add_viite():
         title = request.form["title"]
         year = request.form["year"]
         publisher = request.form["publisher"]
-        add_book(author, title, year, publisher)
+        add_book(author, title, year, publisher, get_db_connection())
         return render_template("index.html")
 
     return render_template("lisaa_viite.html")

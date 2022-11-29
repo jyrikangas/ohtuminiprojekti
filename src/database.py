@@ -1,7 +1,8 @@
 import sqlite3
 
 DATABASE = 'database.db'
+TEST_DATABASE = 'database_test.db'
 
-def get_db_connection():
-    conn = sqlite3.connect(DATABASE)
+def get_db_connection(test=False):
+    conn = sqlite3.connect(DATABASE if not test else TEST_DATABASE)
     return conn
