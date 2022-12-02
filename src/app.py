@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from references_repository import get_references, add_book
+from references_repository import get_references, add_book, delete_book
 from database import get_db_connection
 
 app = Flask(__name__, template_folder='templates')
@@ -27,3 +27,9 @@ def add_viite():
         return render_template("index.html")
 
     return render_template("lisaa_viite.html")
+
+@app.route("/poista_viite")
+def delete_viite():
+    viite = request.args.get("viite_id")
+    delete_book(viite, get_db_connection())
+    return render_template("index.html")

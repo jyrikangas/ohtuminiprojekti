@@ -3,7 +3,9 @@
 <div>
     <ul>
         {% for viite in viitteet %}
-        <li> {{viite[0]+": "+ viite[1], viite[2], viite[3]}} </li>
+        <li> {{viite[1]+": "+ viite[2], viite[3], viite[4]}} <br>
+		<a href="/poista_viite?viite_id={{viite[0]}}">Poista viite</a>
+		</li>
         {% endfor %}
     </ul>
 </div>
