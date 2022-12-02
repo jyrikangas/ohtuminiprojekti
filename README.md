@@ -8,7 +8,10 @@
 
 # Definition of done
 
-- Tehty, dokumentoitu, testattu toimivaksi
+- Toiminnallisuus toteutettu
+- asiakkaan käytettävissä
+- dokumentoitu
+- testattu kattavasti
 
 # Ohjelman käyttö
 
