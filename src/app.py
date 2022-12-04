@@ -33,6 +33,3 @@ def delete_viite():
     viite = request.args.get("viite_id")
     delete_book(viite, get_db_connection())
     return redirect("/viitteet")
-
-if __name__ == "__main__":
-    app.run(debug=True)
