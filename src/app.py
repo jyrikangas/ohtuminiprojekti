@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect
 from references_repository import get_references, add_book, delete_book
 from database import get_db_connection
 
@@ -24,7 +24,7 @@ def add_viite():
         year = request.form["year"]
         publisher = request.form["publisher"]
         add_book(author, title, year, publisher, get_db_connection())
-        return render_template("index.html")
+        return redirect("/viitteet")
 
     return render_template("lisaa_viite.html")
 
@@ -32,4 +32,7 @@ def add_viite():
 def delete_viite():
     viite = request.args.get("viite_id")
     delete_book(viite, get_db_connection())
-    return render_template("index.html")
+    return redirect("/viitteet")
+
+if __name__ == "__main__":
+    app.run(debug=True)

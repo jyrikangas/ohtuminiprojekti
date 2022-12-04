@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<title>Viitteet</title>
-<div>
-    <ul>
+<head>
+    <title>Viitteet</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <a class="navbar__link" href="/">Home</a>
+        <a class="navbar__link" href="/viitteet">Viitteet</a>
+        <a class="navbar__link" href="/lisaa_viite">Uusi</a>
+    </nav>
+    <h1 id="welcome_text">Nykyiset viitteet</h1>
+
+    <div>
         {% for viite in viitteet %}
-        <li> {{viite[1]+": "+ viite[2], viite[3], viite[4]}} <br>
-		<a href="/poista_viite?viite_id={{viite[0]}}">Poista viite</a>
-		</li>
-        {% endfor %}
-    </ul>
-</div>
+            <div class="viite">
+                <h2>{{ viite[2] }}</h2>
+                <p><b>Kirjailija</b> {{ viite[1] }}</p>
+                <p><b>Julkaisuvuosi</b> {{ viite[3] }}</p>
+                <p><b>Julkaisija</b> {{ viite[4] }}</p>
+                <div class="rmbtn">
+                    <a href="/poista_viite?viite_id={{viite[0]}}">Poista viite</a>
+                </div>
+                
+            </div>
+            
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>

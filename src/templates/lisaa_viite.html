@@ -1,17 +1,42 @@
 <!DOCTYPE html>
-<title>Lisää viite</title>
-<form action="/lisaa_viite" method="POST">
-<label for="Auth">Author:</label><br>
-<input type="text" id="Auth" name="author">
-<br>
-<label for="Title">Title:</label><br>
-<input type="text" id="Title" name="title">
-<br>
-<label for="Year">Year:</label><br>
-<input type="number" id="Year" name="year">
-<br>
-<label for="Publ">Publisher:</label><br>
-<input type="text" id="Publ" name="publisher">
-<br>
-<input type="submit" value="Lisää viite">
-</form>
+<head>
+    <title>Lisää viite</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <a class="navbar__link" href="/">Home</a>
+        <a class="navbar__link" href="/viitteet">Viitteet</a>
+        <a class="navbar__link" href="/lisaa_viite">Uusi</a>
+    </nav>
+    <h1 id="welcome_text">Lisää uusi viite</h1>
+    <div class="container">
+        <form action="/lisaa_viite" method="POST">
+            <div class="form_control">
+                <label for="Auth">Author:</label><br>
+                <input type="text" id="Auth" name="author">
+            </div>
+
+            <div class="form_control">
+                <label for="Title">Title:</label><br>
+                <input type="text" id="Title" name="title">
+            </div>
+            
+            <div class="form_control">
+                <label for="Year">Year:</label><br>
+                <input type="number" id="Year" name="year">
+            </div>
+            
+            <div class="form_control">
+                <label for="Publ">Publisher:</label><br>
+                <input type="text" id="Publ" name="publisher">
+            </div>
+
+            <div class="form_control btn">
+                <input type="submit" value="Lisää">
+            </div>
+        
+        </form>
+    </div>
+</body>

@@ -8,6 +8,9 @@ def init_db():
     cur.execute(
         "INSERT INTO book (author, title, year, publisher) VALUES ('Martin, Robert', 'Clean Code: A Handbook of Agile Software Craftsmanship', 2008, 'Prentice Hall')"
         )
+    cur.execute(
+        "INSERT INTO book (author, title, year, publisher) VALUES ('Tolkien, John', 'The Lord of the Rings', 1954, 'Allen & Unwin')"
+        )
     conn.commit()
 
 if __name__ == '__main__':

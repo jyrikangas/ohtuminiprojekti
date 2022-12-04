@@ -1,8 +1,24 @@
 <!DOCTYPE html>
-<title>Ohtuminiprojekti</title>
-<a href="/lisaa_viite">Lisää viite</a>
-<br>
-<p>
-<a href="/viitteet">Viitteet</a>
+<head>
+    <title>Ohtuminiprojekti</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
 
-hello world
+<body>
+    <nav class="navbar">
+        <a class="navbar__link" href="/">Home</a>
+        <a class="navbar__link" href="/viitteet">Viitteet</a>
+        <a class="navbar__link" href="/lisaa_viite">Uusi</a>
+    </nav>
+    <h1 id="welcome_text">Tervetuloa Viitteet-sovellukseen</h1>
+    <div class="container">
+        
+        <a class="page" href="/lisaa_viite">
+            <p>Lisää viite</p>
+        </a>
+        <a class="page" href="/viitteet">
+            <p>Viitteet</p>
+        </a>
+    </div>
+    
+</body>
