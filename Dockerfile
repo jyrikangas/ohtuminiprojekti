@@ -24,9 +24,9 @@ RUN poetry install
 
 COPY . /src
 
-RUN python3 src/init_db.py
-
 WORKDIR /src/src
+
+RUN python3 src/init_db.py
 
 EXPOSE 5000
 
