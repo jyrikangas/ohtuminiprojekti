@@ -1,5 +1,5 @@
 import unittest
-from references_repository import get_references, add_book
+from references_repository import get_references, add_book, delete_book
 from database import get_db_connection
 
 class TestReferencesRepository(unittest.TestCase):
@@ -30,4 +30,7 @@ class TestReferencesRepository(unittest.TestCase):
         references = get_references(self.conn)
         self.assertTrue(len(references) == 2)
 
-    
+    def test_delete_book(self):
+        delete_book('1', self.conn)
+        references = get_references(self.conn)
+        self.assertTrue(len(references) == 0)
