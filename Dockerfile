@@ -26,7 +26,7 @@ COPY . /src
 
 WORKDIR /src/src
 
-RUN python3 src/init_db.py
+RUN python3 init_db.py
 
 EXPOSE 5000
 
