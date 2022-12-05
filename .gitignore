@@ -1,2 +1,6 @@
 __pycache__
 *.db
+log.html
+output.xml
+report.html
+selenium-screenshot*
