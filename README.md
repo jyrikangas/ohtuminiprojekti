@@ -7,7 +7,7 @@
 - [testikattavuus](https://app.codecov.io/gh/jyrikangas/ohtuminiprojekti)
 - [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. Välilehdellä 1. product backlog, välilehdellä 2. sprint backlog ja sprintin burndown -käyrä.
 
-- appi osoitteessa https://ohtuminiappli2.fly.dev:5000/
+- [Linkki appiin](https://ohtuminiappli2.fly.dev:5000/)
 # Definition of done
 
 - Toiminnallisuus toteutettu
