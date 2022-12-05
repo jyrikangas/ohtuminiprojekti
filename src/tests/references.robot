@@ -11,3 +11,9 @@ Home Page Exists
 Add References Page Exists
     Go To Add References Page
     Add References Page Should Be Open
+
+References Page Exists
+    Go to References Page
+    References Page Should Be Open
+
+
