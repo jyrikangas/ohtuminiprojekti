@@ -2,6 +2,7 @@
 
 # käynnistetään Flask-palvelin taustalle
 cd src
+python3 init_db.py
 poetry run flask run &
 
 # odetetaan, että palvelin on valmiina ottamaan vastaan pyyntöjä
