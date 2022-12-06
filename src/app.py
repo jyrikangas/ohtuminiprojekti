@@ -11,7 +11,7 @@ def index():
 
 @app.route("/viitteet")
 def list_references():
-    
+
     references = get_references(get_db_connection())
     return render_template("viitteet.html", viitteet=references)
 
@@ -21,9 +21,12 @@ def add_viite():
     if request.method == "POST":
         author = request.form["author"]
         title = request.form["title"]
-        year = request.form["year"]
+        year = int(request.form["year"])
         publisher = request.form["publisher"]
-        add_book(author, title, year, publisher, get_db_connection())
+        added_book = add_book(author, title, year, publisher, get_db_connection())
+        print(added_book)
+        if added_book is not True:
+            return render_template("lisaa_viite.html", error=added_book)
         return redirect("/viitteet")
 
     return render_template("lisaa_viite.html")

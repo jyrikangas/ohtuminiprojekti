@@ -18,7 +18,7 @@ class TestReferencesRepository(unittest.TestCase):
             )
         self.conn.commit()
 
-    
+
 
     def test_get_references_returns_correct_list(self):
         references = get_references(self.conn)
@@ -29,6 +29,37 @@ class TestReferencesRepository(unittest.TestCase):
                  'Tester publishing', self.conn)
         references = get_references(self.conn)
         self.assertTrue(len(references) == 2)
+
+        added = add_book('', 'TEsting is fun', 2000,
+                 'Tester publishing', self.conn)
+
+
+        self.assertEqual(added, 'Syötteen pituus on oltava yli 1')
+
+        added = add_book(1000, 'TEsting is fun', 2000,
+                 'Tester publishing', self.conn)
+
+
+        self.assertEqual(added, 'Kirjailijan on oltava merkkijono')
+
+        added = add_book('test', 1222, 2000,
+                 'Tester publishing', self.conn)
+
+
+        self.assertEqual(added, 'Otsikon on oltava merkkijono')
+
+        added = add_book('test', 'test test', '2000',
+                 'Tester publishing', self.conn)
+
+
+        self.assertEqual(added, 'Vuoden on oltava numero')
+
+        added = add_book('test', 'test test', 2000,
+                 1222, self.conn)
+
+
+        self.assertEqual(added, 'Julkaisijan on oltava merkkijono')
+
 
     def test_delete_book(self):
         delete_book('1', self.conn)
