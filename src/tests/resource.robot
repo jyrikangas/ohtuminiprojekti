@@ -32,3 +32,6 @@ Go To References Page
 
 Go To Add References Page
     Go To  ${ADD URL}
+
+Submit Credentials
+    Click Button  lisää
