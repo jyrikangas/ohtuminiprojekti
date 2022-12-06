@@ -1,3 +1,4 @@
+# pylint: skip-file
 from database import get_db_connection
 
 def init_db():
