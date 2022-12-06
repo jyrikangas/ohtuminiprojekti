@@ -4,18 +4,19 @@
 
 # Linkit 
 
-- [testikattavuus](https://app.codecov.io/gh/jyrikangas/ohtuminiprojekti)
-- [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. Välilehdellä 1 product backlog, välilehdellä 2 sprint backlog ja sprintin burndown -käyrä.
+- [Tästä](https://ohtuminiappli2.fly.dev:5000/) sovellukseen.
+- [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. 
+Ensimmäisellä välilehdellä product backlog, toisella välilehdellä 1. sprintin backlog ja kolmannella välilehdellä 2. sprintin backlog. 
+- [Tästä](https://app.codecov.io/gh/jyrikangas/ohtuminiprojekti) testikattavuusraporttiin.
 
-- [Linkki appiin](https://ohtuminiappli2.fly.dev:5000/)
 # Definition of done
 
-- Toiminnallisuus toteutettu
-- asiakkaan käytettävissä
-- dokumentoitu
-- testattu kattavasti
+- Toteutettu hyväksymiskriteerien mukaisesti
+- Asiakkaan käytettävissä
+- Dokumentoitu
+- Testattu kattavasti
 
-# Ohjelman käyttö
+# Ohjelman käyttö lokaalisti
 
   1. Kopioi repositorio omalle koneellesi
   2. Asenna riippuvuudet komennolla:
