@@ -1,3 +1,4 @@
+# pylint: skip-file
 import unittest
 from references_repository import get_references, add_book, delete_book
 from database import get_db_connection
