@@ -1,8 +1,8 @@
 # pylint: skip-file
-from database import get_db_connection
+from database import the_db_connection
 
 def init_db():
-    conn = get_db_connection()
+    conn = the_db_connection
     cur = conn.cursor()
     cur.execute("DROP TABLE IF EXISTS book")
     cur.execute("CREATE TABLE book (id INTEGER PRIMARY KEY, author TEXT, title TEXT, year INTEGER, publisher TEXT)")
