@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from references_repository import get_references, add_book, delete_book
 from database import the_db_connection
+from init_db import check_db
 
 app = Flask(__name__, template_folder='templates')
-
+check_db()
 
 @app.route("/")
 def index():
