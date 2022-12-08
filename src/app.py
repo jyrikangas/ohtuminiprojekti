@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect
 from references_repository import get_references, add_book, delete_book
-from database import get_db_connection
+from database import the_database_connection
 
 app = Flask(__name__, template_folder='templates')
 
@@ -12,7 +12,7 @@ def index():
 @app.route("/viitteet")
 def list_references():
 
-    references = get_references(get_db_connection())
+    references = get_references(the_database_connection)
     return render_template("viitteet.html", viitteet=references)
 
 
@@ -34,5 +34,5 @@ def add_viite():
 @app.route("/poista_viite")
 def delete_viite():
     viite = request.args.get("viite_id")
-    delete_book(viite, get_db_connection())
+    delete_book(viite, the_database_connection)
     return redirect("/viitteet")
