@@ -1,9 +1,10 @@
 from flask import Flask, render_template, request, redirect
 from references_repository import get_references, add_book, delete_book
-from database import get_db_connection
+from database import the_db_connection
+from init_db import check_db
 
 app = Flask(__name__, template_folder='templates')
-
+check_db()
 
 @app.route("/")
 def index():
@@ -12,7 +13,7 @@ def index():
 @app.route("/viitteet")
 def list_references():
 
-    references = get_references(get_db_connection())
+    references = get_references(the_db_connection)
     return render_template("viitteet.html", viitteet=references)
 
 
@@ -23,7 +24,7 @@ def add_viite():
         title = request.form["title"]
         year = int(request.form["year"])
         publisher = request.form["publisher"]
-        added_book = add_book(author, title, year, publisher, get_db_connection())
+        added_book = add_book(author, title, year, publisher, the_db_connection)
         print(added_book)
         if added_book is not True:
             return render_template("lisaa_viite.html", error=added_book)
@@ -34,5 +35,5 @@ def add_viite():
 @app.route("/poista_viite")
 def delete_viite():
     viite = request.args.get("viite_id")
-    delete_book(viite, get_db_connection())
+    delete_book(viite, the_db_connection)
     return redirect("/viitteet")
