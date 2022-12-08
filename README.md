@@ -1,6 +1,7 @@
 # Ohtuminiprojekti!
 
 ![GHA workflow badge](https://github.com/jyrikangas/ohtuminiprojekti/workflows/CI/badge.svg)
+[![codecov](https://codecov.io/gh/jyrikangas/ohtuminiprojekti/branch/main/graph/badge.svg?token=l4SUeHezLk)](https://codecov.io/gh/jyrikangas/ohtuminiprojekti)
 
 # Linkit 
 
