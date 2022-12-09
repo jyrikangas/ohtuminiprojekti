@@ -37,3 +37,9 @@ def delete_viite():
     viite = request.args.get("viite_id")
     delete_book(viite, the_db_connection)
     return redirect("/viitteet")
+
+@app.route("/sort_by_year")
+def sort_by_year():
+    references = get_references(the_db_connection)
+    sorted_references = sorted(references, key = lambda viite: viite[3])
+    return render_template("viitteet.html", viitteet=sorted_references)
