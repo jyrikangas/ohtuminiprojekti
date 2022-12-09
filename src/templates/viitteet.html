@@ -10,7 +10,10 @@
         <a class="navbar__link" href="/lisaa_viite">Uusi</a>
     </nav>
     <h1 id="welcome_text">Nykyiset viitteet</h1>
-    <input type="button" onclick="parent.location='sort_by_year'" value="lajittele vuoden mukaan">
+    {% set url = url_for(request.endpoint) %}
+    {% if url != "/sort_by_year": %}
+	<input type="button" id="sort_by_year" onclick="parent.location='sort_by_year'" value="lajittele vuoden mukaan">
+    {% endif %}
     <div>
         {% for viite in viitteet %}
             <div class="viite">
