@@ -15,12 +15,20 @@
 	<input type="button" id="sort_by_year" onclick="parent.location='sort_by_year'" value="lajittele vuoden mukaan">
     {% endif %}
     <div>
+        <select name="tag" id="tag">
+            {% for tag in tags %}
+            <option value={{ tag[0] }}> {{tag[0] }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div>
         {% for viite in viitteet %}
             <div class="viite">
                 <h2>{{ viite[2] }}</h2>
                 <p><b>Kirjailija</b> {{ viite[1] }}</p>
                 <p><b>Julkaisuvuosi</b> {{ viite[3] }}</p>
                 <p><b>Julkaisija</b> {{ viite[4] }}</p>
+                <p><b>Tägi {{ viite[5]  }}<p><b>
                 <p><b>BibTeX</b><br>
                     @book{viite,<br>
                         <pre class="tab">    author = &#123;{{ viite[1] }}&#125;,<br>    title = &#123;{{ viite[2] }}&#125;,<br>    year = &#123;{{ viite[3] }}&#125;,<br>    publisher = &#123;{{ viite[4] }}&#125;,<br>}</p></pre>

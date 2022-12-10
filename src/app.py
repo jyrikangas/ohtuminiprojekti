@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from references_repository import get_references, add_book, delete_book
+from references_repository import get_references, add_book, delete_book, get_tags
 from database import the_db_connection
 from init_db import check_db
 
@@ -14,7 +14,13 @@ def index():
 def list_references():
 
     references = get_references(the_db_connection)
-    return render_template("viitteet.html", viitteet=references)
+    all_tags = get_tags(the_db_connection)
+    tags = []
+    for tag in all_tags:
+        if tag not in tags:
+            tags.append(tag)
+    print(tags)
+    return render_template("viitteet.html", viitteet=references, tags=tags)
 
 
 @app.route("/lisaa_viite", methods=["GET", "POST"])
