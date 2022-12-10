@@ -24,7 +24,8 @@ def add_viite():
         title = request.form["title"]
         year = int(request.form["year"])
         publisher = request.form["publisher"]
-        added_book = add_book(author, title, year, publisher, the_db_connection)
+        tag = request.form["tag"]
+        added_book = add_book(author, title, year, publisher, tag, the_db_connection)
         print(added_book)
         if added_book is not True:
             return render_template("lisaa_viite.html", error=added_book)

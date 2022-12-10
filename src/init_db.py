@@ -21,7 +21,8 @@ def check_db():
             author TEXT, 
             title TEXT, 
             year INTEGER, 
-            publisher TEXT
+            publisher TEXT,
+            tag TEXT
         )
         """
     cursor.execute(create_table_query)
@@ -33,15 +34,15 @@ def insert_model_books_into_db():
 
     insert_query = """
         INSERT INTO book (
-            author, title, year, publisher
+            author, title, year, publisher, tag
         ) 
         VALUES (
-            :author, :title, :year, :publisher
+            :author, :title, :year, :publisher, :tag
         );
         """
-    book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall"}
-    book2 = {"author": "Tolkien, John", "title":"The Lord of the Rings", "year":1954, "publisher":"Allen & Unwin"}
-    book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley"}
+    book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "tag":"computer science"}
+    book2 = {"author": "Tolkien, John", "title":"The Lord of the Rings", "year":1954, "publisher":"Allen & Unwin", "tag":"fiction"}
+    book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley", "tag":"computer science"}
 
     cursor.execute(insert_query, book1)
     cursor.execute(insert_query, book2)
