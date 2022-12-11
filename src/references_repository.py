@@ -7,7 +7,13 @@ def get_references(db_conn):
     references = cursor.fetchall()
     return references
 
-
+def get_references_by_tag(tag, db_conn):
+    cursor = db_conn.cursor()
+    print(tag)
+    cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
+    filtered_references = cursor.fetchall()
+    return filtered_references
+        
 def add_book(author, title, year, publisher, tag, db_conn):
     if not isinstance(year, int):
         return "Vuoden on oltava numero"
@@ -44,4 +50,13 @@ def get_tags(db_conn):
     cursor.execute('SELECT tag FROM book')
     tags = cursor.fetchall()
     print(tags)
+    return tags
+
+def get_unique_tags(db_conn):
+    all_tags = get_tags(db_conn)
+    tags = []
+    for tag in all_tags:
+        if tag not in tags:
+            tags.append(tag)
+    tags.append(('all',))
     return tags

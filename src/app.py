@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect
-from references_repository import get_references, add_book, delete_book, get_tags
+from references_repository import get_references, add_book, delete_book, get_unique_tags, get_references_by_tag
 from database import the_db_connection
 from init_db import check_db
 
@@ -9,16 +9,17 @@ check_db()
 @app.route("/")
 def index():
     return render_template("index.html")
-
-@app.route("/viitteet")
+@app.route("/viitteet/")
 def list_references():
+    tag = request.args.get('tag')
+    if tag == None:
+        tag = "all"
+    if tag == "all":
+        references = get_references(the_db_connection)
+    else:
+        references = get_references_by_tag(tag, the_db_connection)
+    tags = get_unique_tags(the_db_connection)
 
-    references = get_references(the_db_connection)
-    all_tags = get_tags(the_db_connection)
-    tags = []
-    for tag in all_tags:
-        if tag not in tags:
-            tags.append(tag)
     print(tags)
     return render_template("viitteet.html", viitteet=references, tags=tags)
 
@@ -45,8 +46,15 @@ def delete_viite():
     delete_book(viite, the_db_connection)
     return redirect("/viitteet")
 
-@app.route("/sort_by_year")
+@app.route("/viitteet/sort_by_year/")
 def sort_by_year():
-    references = get_references(the_db_connection)
+    tag = request.args.get('tag')
+    if tag == None:
+        tag = "all"
+    if tag == "all":
+        references = get_references(the_db_connection)
+    else:
+        references = get_references_by_tag(tag, the_db_connection)
+    tags = get_unique_tags(the_db_connection)
     sorted_references = sorted(references, key = lambda viite: viite[3])
-    return render_template("viitteet.html", viitteet=sorted_references)
+    return render_template("viitteet.html", viitteet=sorted_references, tags=tags)

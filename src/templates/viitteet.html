@@ -11,15 +11,18 @@
     </nav>
     <h1 id="welcome_text">Nykyiset viitteet</h1>
     {% set url = url_for(request.endpoint) %}
-    {% if url != "/sort_by_year": %}
-	<input type="button" id="sort_by_year" onclick="parent.location='sort_by_year'" value="lajittele vuoden mukaan">
+    {% if url != "/viitteet/sort_by_year": %}
+	<input type="button" id="sort_by_year" onclick="parent.location='sort_by_year/'" value="lajittele vuoden mukaan">
     {% endif %}
     <div>
-        <select name="tag" id="tag">
-            {% for tag in tags %}
-            <option value={{ tag[0] }}> {{tag[0] }}</option>
-            {% endfor %}
-        </select>
+        <form action="/viitteet" method="GET">
+            <select name="tag" id="tag">
+                {% for tag in tags %}
+                    <option value={{ tag[0] }}> {{tag[0] }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit" value="näytä vain viitteet joilla on tämä tagi">
+        </form>
     </div>
     <div>
         {% for viite in viitteet %}
