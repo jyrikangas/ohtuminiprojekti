@@ -11,26 +11,29 @@
         <a class="navbar__link" href="/lisaa_viite">Uusi</a>
     </nav>
     <h1 id="welcome_text">Lisää uusi viite</h1>
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
     <div class="container">
         <form action="/lisaa_viite" method="POST">
             <div class="form_control">
                 <label for="Auth">Author:</label><br>
-                <input type="text" id="Auth" name="author">
+                <input type="text" id="Auth" name="author" required>
             </div>
 
             <div class="form_control">
                 <label for="Title">Title:</label><br>
-                <input type="text" id="Title" name="title">
+                <input type="text" id="Title" name="title" required>
             </div>
             
             <div class="form_control">
                 <label for="Year">Year:</label><br>
-                <input type="number" id="Year" name="year">
+                <input type="number" id="Year" name="year" required>
             </div>
             
             <div class="form_control">
                 <label for="Publ">Publisher:</label><br>
-                <input type="text" id="Publ" name="publisher">
+                <input type="text" id="Publ" name="publisher" required>
             </div>
 
             <div class="form_control">

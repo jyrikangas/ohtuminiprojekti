@@ -1,6 +1,7 @@
-from flask import Flask, render_template, request, redirect
-from references_repository import get_references, add_book, delete_book
+from flask import Flask, render_template, request, redirect, Response
+from references_repository import get_references, add_book, delete_book, get_reference_by_id
 from references_repository import get_unique_tags, get_references_by_tag
+from references_repository import generate_bibtex
 from database import the_db_connection
 from init_db import check_db
 
@@ -10,9 +11,28 @@ check_db()
 @app.route("/")
 def index():
     return render_template("index.html")
+
+@app.route("/viitteet/download_bibtex")
+def download_bibtex():
+    viite_id = request.args.get("viite_id")
+    references = get_reference_by_id(viite_id, the_db_connection)
+    print(references)
+    if viite_id is None:
+        references = get_references(the_db_connection)
+        
+    bibtex = generate_bibtex(references)
+    return Response(
+        bibtex,
+        mimetype="text/plain",
+        headers={"Content-disposition":
+                "attachment; filename=references.bib"})
+
+
 @app.route("/viitteet/")
 def list_references():
     tag = request.args.get('tag')
+    error = request.args.get('error')
+
     if tag is None:
         tag = "all"
     if tag == "all":
@@ -20,9 +40,8 @@ def list_references():
     else:
         references = get_references_by_tag(tag, the_db_connection)
     tags = get_unique_tags(the_db_connection)
-
-    print(tags)
-    return render_template("viitteet.html", viitteet=references, tags=tags)
+    bibtex = generate_bibtex(references)
+    return render_template("viitteet.html", viitteet=references, tags=tags, error=error)
 
 
 @app.route("/lisaa_viite", methods=["GET", "POST"])
@@ -34,18 +53,22 @@ def add_viite():
         publisher = request.form["publisher"]
         tag = request.form["tag"]
         added_book = add_book(author, title, year, publisher, tag, the_db_connection)
-        print(added_book)
         if added_book is not True:
             return render_template("lisaa_viite.html", error=added_book)
-        return redirect("/viitteet")
+
+        return render_template("lisaa_viite.html", success="Viite lisätty onnistuneesti")
 
     return render_template("lisaa_viite.html")
 
 @app.route("/poista_viite")
 def delete_viite():
     viite = request.args.get("viite_id")
-    delete_book(viite, the_db_connection)
-    return redirect("/viitteet")
+    deleted = delete_book(viite, the_db_connection)
+    if deleted is not True:
+
+        return redirect("/viitteet/?error=" + deleted)
+
+    return redirect("/viitteet/?error=" + "Viite poistettu onnistuneesti")
 
 @app.route("/viitteet/sort_by_year/")
 def sort_by_year():
@@ -59,3 +82,6 @@ def sort_by_year():
     tags = get_unique_tags(the_db_connection)
     sorted_references = sorted(references, key = lambda viite: viite[3])
     return render_template("viitteet.html", viitteet=sorted_references, tags=tags)
+
+if __name__ == "__main__":
+    app.run(debug=True)

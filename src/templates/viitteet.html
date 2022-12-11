@@ -10,20 +10,40 @@
         <a class="navbar__link" href="/lisaa_viite">Uusi</a>
     </nav>
     <h1 id="welcome_text">Nykyiset viitteet</h1>
-    {% set url = url_for(request.endpoint) %}
-    {% if url != "/viitteet/sort_by_year": %}
-	<input type="button" id="sort_by_year" onclick="parent.location='sort_by_year/'" value="lajittele vuoden mukaan">
-    {% endif %}
-    <div>
-        <form action="/viitteet" method="GET">
-            <select name="tag" id="tag">
-                {% for tag in tags %}
-                    <option value={{ tag[0] }}> {{tag[0] }}</option>
-                {% endfor %}
-            </select>
-            <input type="submit" value="näytä vain viitteet joilla on tämä tagi">
-        </form>
+    <div class="tag_form">
+        {% set url = url_for(request.endpoint) %}
+        {% if url != "/viitteet/sort_by_year": %}
+        <input class=""type="button" id="sort_by_year" onclick="parent.location='sort_by_year/'" value="lajittele vuoden mukaan">
+        {% endif %}
+        <div class="sort">
+            <form action="/viitteet" method="GET">
+                <select name="tag" id="tag">
+                    {% for tag in tags %}
+                        {% if tag[0]|length > 0 %}
+                            <option value={{ tag[0] }}> {{tag[0] }}</option>
+                        {% endif %}
+                    {% endfor %}
+                </select>
+                <input type="submit" value="näytä vain viitteet joilla on tämä tagi">
+            </form>
+        </div>
     </div>
+
+    <!--
+        Download all viitteet as a bibtex
+    -->
+
+    <div class="download">
+        <form action="/viitteet/download_bibtex" method="GET">
+            <input type="submit" value="Lataa kaikki viitteet bibtex muodossa">
+        </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+    {% if success %}
+        <p class="success">{{ success }}</p>
+    {% endif %}
     <div>
         {% for viite in viitteet %}
             <div class="viite">
@@ -31,12 +51,24 @@
                 <p><b>Kirjailija</b> {{ viite[1] }}</p>
                 <p><b>Julkaisuvuosi</b> {{ viite[3] }}</p>
                 <p><b>Julkaisija</b> {{ viite[4] }}</p>
-                <p><b>Tägi {{ viite[5]  }}<p><b>
+                {% if viite[5]|length > 0 %}
+                    <p><b>Tägi {{ viite[5]  }}<p><b>
+                {% endif %}
                 <p><b>BibTeX</b><br>
                     @book{viite,<br>
                         <pre class="tab">    author = &#123;{{ viite[1] }}&#125;,<br>    title = &#123;{{ viite[2] }}&#125;,<br>    year = &#123;{{ viite[3] }}&#125;,<br>    publisher = &#123;{{ viite[4] }}&#125;,<br>}</p></pre>
                 <div class="rmbtn">
                     <a href="/poista_viite?viite_id={{viite[0]}}">Poista viite</a>
+                </div>
+                <!--
+                    Download viite as a bibtex
+                -->
+
+                <div class="download">
+                    <form action="/viitteet/download_bibtex" method="GET">
+                        <input type="hidden" name="viite_id" value={{ viite[0] }}>
+                        <input type="submit" value="Lataa viite bibtex muodossa">
+                    </form>
                 </div>
                 
             </div>
