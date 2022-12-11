@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request, redirect
-from references_repository import get_references, add_book, delete_book, get_unique_tags, get_references_by_tag
+from references_repository import get_references, add_book, delete_book
+from references_repository import get_unique_tags, get_references_by_tag
 from database import the_db_connection
 from init_db import check_db
 
@@ -12,7 +13,7 @@ def index():
 @app.route("/viitteet/")
 def list_references():
     tag = request.args.get('tag')
-    if tag == None:
+    if tag is None:
         tag = "all"
     if tag == "all":
         references = get_references(the_db_connection)
@@ -49,7 +50,7 @@ def delete_viite():
 @app.route("/viitteet/sort_by_year/")
 def sort_by_year():
     tag = request.args.get('tag')
-    if tag == None:
+    if tag is None:
         tag = "all"
     if tag == "all":
         references = get_references(the_db_connection)

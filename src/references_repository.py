@@ -13,7 +13,7 @@ def get_references_by_tag(tag, db_conn):
     cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
     filtered_references = cursor.fetchall()
     return filtered_references
-        
+
 def add_book(author, title, year, publisher, tag, db_conn):
     if not isinstance(year, int):
         return "Vuoden on oltava numero"
