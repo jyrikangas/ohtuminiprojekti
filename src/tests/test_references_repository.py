@@ -12,7 +12,7 @@ class TestReferencesRepository(unittest.TestCase):
         cur = self.conn.cursor()
         cur.execute("DROP TABLE IF EXISTS book")
         cur.execute(
-            "CREATE TABLE book (id INTEGER PRIMARY KEY, author TEXT, title TEXT, year INTEGER, publisher TEXT, tag TEXT)"
+            "CREATE TABLE book (id INTEGER PRIMARY KEY, author TEXT, title TEXT, year INTEGER, publisher TEXT, addedDate timestamp, tag TEXT)"
             )
         cur.execute(
             "INSERT INTO book (author, title, year, publisher, tag) VALUES ('Martin, Robert', 'Clean Code: A Handbook of Agile Software Craftsmanship', 2008, 'Prentice Hall', 'computer science')"
@@ -78,5 +78,7 @@ class TestReferencesRepository(unittest.TestCase):
     def test_generate_bibtex(self):
         viite = get_reference_by_id('1', self.conn)
         bibtex = generate_bibtex(viite)
-        correct_bibtex = """@book{viite,\n author = {Martin, Robert},\n publisher = {Prentice Hall},\n tag = {computer science},\n title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n year = {2008}\n}\n"""
+        correct_bibtex = """@book{viite,\n author = {Martin, Robert},\n publisher = {Prentice Hall},\n title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n year = {2008}\n}\n"""
+        print(bibtex)
+        print(correct_bibtex)
         self.assertEqual(bibtex, correct_bibtex)

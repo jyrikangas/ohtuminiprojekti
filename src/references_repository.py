@@ -1,6 +1,6 @@
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
-
+import datetime
 def get_references(db_conn):
     database_connection = db_conn
     cursor = database_connection.cursor()
@@ -12,9 +12,64 @@ def get_references(db_conn):
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
     print(tag)
-    cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
+    if tag is None:
+        cursor.execute('SELECT * FROM book')
+    else:
+        cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
     filtered_references = cursor.fetchall()
     return filtered_references
+
+def get_references_by_tag_and_sort_by_year_asc(tag, db_conn):
+    cursor = db_conn.cursor()
+    if tag is None or "all":
+        cursor.execute('select * FROM book ORDER BY year ASC')
+    else:
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year ASC', [tag])
+    filtered_references = cursor.fetchall()
+    return filtered_references
+
+def get_references_by_tag_and_sort_by_year_desc(tag, db_conn):
+    cursor = db_conn.cursor()
+    if tag is None or "all":
+        cursor.execute('select * FROM book ORDER BY year DESC')
+    else:
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year DESC', [tag])
+    filtered_references = cursor.fetchall()
+    return filtered_references
+
+def get_references_by_tag_and_sort_by_added_asc(tag, db_conn):
+    cursor = db_conn.cursor()
+    if tag is None or "all":
+        cursor.execute('select * FROM book ORDER BY addedDate ASC')
+    else:
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate ASC', [tag])
+    filtered_references = cursor.fetchall()
+    return filtered_references
+
+def get_references_by_tag_and_sort_by_added_desc(tag, db_conn):
+    cursor = db_conn.cursor()
+    if tag is None or "all":
+        cursor.execute('select * FROM book ORDER BY addedDate DESC')
+    else:
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate DESC', [tag])
+    filtered_references = cursor.fetchall()
+    return filtered_references
+
+def get_references_by_tag_and_sort(tag, sort, db_conn):
+    print(sort)
+    if sort == "year_asc":
+        filtered_references = get_references_by_tag_and_sort_by_year_asc(tag, db_conn)
+    elif sort == "year_desc":
+        filtered_references = get_references_by_tag_and_sort_by_year_desc(tag, db_conn)
+    elif sort == "added_asc":
+        filtered_references = get_references_by_tag_and_sort_by_added_asc(tag, db_conn)
+    elif sort == "added_desc":
+        filtered_references = get_references_by_tag_and_sort_by_added_desc(tag, db_conn)
+    elif sort is None:
+        filtered_references = get_references_by_tag(tag, db_conn)
+    print(filtered_references)
+    return filtered_references
+
 
 def get_reference_by_id(viite_id, db_conn):
     cursor = db_conn.cursor()
@@ -37,11 +92,12 @@ def add_book(author, title, year, publisher, tag, db_conn):
 
     if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1:
         return "Syötteen pituus on oltava yli 1"
+    addedDate = datetime.datetime.now()
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
-        'INSERT INTO book (author, title, year, publisher, tag) VALUES (?, ?, ?, ?, ?)',
-        (author, title, year, publisher, tag)
+        'INSERT INTO book (author, title, year, publisher, addedDate, tag) VALUES (?, ?, ?, ?, ?, ?)',
+        (author, title, year, publisher, addedDate, tag)
     )
     conn.commit()
     return True
@@ -83,7 +139,6 @@ def generate_bibtex(references):
             'title': reference[2],
             'year': str(reference[3]),
             'publisher': reference[4],
-            'tag': reference[5],
             'ENTRYTYPE': 'book'
         })
     writer = BibTexWriter()

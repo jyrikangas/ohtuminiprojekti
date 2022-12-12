@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, Response
 from references_repository import get_references, add_book, delete_book, get_reference_by_id
-from references_repository import get_unique_tags, get_references_by_tag
+from references_repository import get_unique_tags, get_references_by_tag_and_sort, get_references_by_tag
 from references_repository import generate_bibtex
 from database import the_db_connection
 from init_db import check_db
@@ -32,17 +32,11 @@ def download_bibtex():
 def list_references():
     tag = request.args.get('tag')
     error = request.args.get('error')
-
-    if tag is None:
-        tag = "all"
-    if tag == "all":
-        references = get_references(the_db_connection)
-    else:
-        references = get_references_by_tag(tag, the_db_connection)
+    sort = request.args.get('sort')
+    references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
     tags = get_unique_tags(the_db_connection)
     bibtex = generate_bibtex(references)
     return render_template("viitteet.html", viitteet=zip(references, bibtex), tags=tags, error=error, sorts=["year_asc","year_desc", "added_asc", "added_desc"])
-
 
 @app.route("/lisaa_viite", methods=["GET", "POST"])
 def add_viite():

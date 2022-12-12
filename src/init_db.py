@@ -22,6 +22,7 @@ def check_db():
             title TEXT, 
             year INTEGER, 
             publisher TEXT,
+            addedDate timestamp,
             tag TEXT
         )
         """
@@ -31,7 +32,7 @@ def check_db():
 def insert_model_books_into_db():
     connection = the_db_connection
     cursor = connection.cursor()
-
+    
     insert_query = """
         INSERT INTO book (
             author, title, year, publisher, tag
