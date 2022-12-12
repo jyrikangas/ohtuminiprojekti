@@ -20,7 +20,6 @@ class TestReferencesRepository(unittest.TestCase):
         self.conn.commit()
 
 
-
     def test_get_references_returns_correct_list(self):
         references = get_references(self.conn)
         self.assertTrue(len(references) == 1)
@@ -76,7 +75,7 @@ class TestReferencesRepository(unittest.TestCase):
         deleted = delete_book('aa', self.conn)
         self.assertEqual(deleted, 'Kirjan poistamisessa tapahtui virhe')
 
-    def test_generate_bibtex_by(self):
+    def test_generate_bibtex(self):
         viite = get_reference_by_id('1', self.conn)
         bibtex = generate_bibtex(viite)
         correct_bibtex = """@book{viite,\n author = {Martin, Robert},\n publisher = {Prentice Hall},\n tag = {computer science},\n title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n year = {2008}\n}\n"""

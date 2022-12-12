@@ -56,7 +56,7 @@ def add_viite():
         if added_book is not True:
             return render_template("lisaa_viite.html", error=added_book)
 
-        return render_template("lisaa_viite.html", success="Viite lisätty onnistuneesti")
+        return redirect("/viitteet/?error=" + "Viite lisätty onnistuneesti")
 
     return render_template("lisaa_viite.html")
 
