@@ -57,18 +57,17 @@
         <p class="success">{{ success }}</p>
     {% endif %}
     <div>
-        {% for viite in viitteet %}
+        {% for viite, bibtex in viitteet %}
             <div class="viite">
                 <h2>{{ viite[2] }}</h2>
                 <p><b>Kirjailija</b> {{ viite[1] }}</p>
                 <p><b>Julkaisuvuosi</b> {{ viite[3] }}</p>
                 <p><b>Julkaisija</b> {{ viite[4] }}</p>
                 {% if viite[5]|length > 0 %}
-                    <p><b>Tägi {{ viite[5]  }}<p><b>
+                    <p><b>Tägi</b> {{ viite[5]  }}<p>
                 {% endif %}
                 <p><b>BibTeX</b><br>
-                    @book{viite,<br>
-                        <pre class="tab">    author = &#123;{{ viite[1] }}&#125;,<br>    title = &#123;{{ viite[2] }}&#125;,<br>    year = &#123;{{ viite[3] }}&#125;,<br>    publisher = &#123;{{ viite[4] }}&#125;,<br>}</p></pre>
+                    <pre>{{ bibtex }}</pre>
                 <div class="rmbtn">
                     <a href="/poista_viite?viite_id={{viite[0]}}">Poista viite</a>
                 </div>

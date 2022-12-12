@@ -87,5 +87,6 @@ def generate_bibtex(references):
             'ENTRYTYPE': 'book'
         })
     writer = BibTexWriter()
-    bibtext = writer.write(db)
-    return bibtext
+    writer.entry_separator = ';\n'
+    bibtex = writer.write(db)
+    return bibtex.split(';\n')
