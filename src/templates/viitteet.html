@@ -27,6 +27,18 @@
                 <input type="submit" value="näytä vain viitteet joilla on tämä tagi">
             </form>
         </div>
+        <div class="sort">
+            <form action="/viitteet" method="GET">
+                <select name="sort" id="sort">
+                    {% for sort in sorts %}
+                        
+                        <option value={{ sort }}> {{ sort }}</option>
+                        
+                    {% endfor %}
+                </select>
+                <input type="submit" value="järjestä">
+            </form>
+        </div>
     </div>
 
     <!--

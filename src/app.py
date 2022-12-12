@@ -41,7 +41,7 @@ def list_references():
         references = get_references_by_tag(tag, the_db_connection)
     tags = get_unique_tags(the_db_connection)
     bibtex = generate_bibtex(references)
-    return render_template("viitteet.html", viitteet=references, tags=tags, error=error)
+    return render_template("viitteet.html", viitteet=references, tags=tags, error=error, sorts=["year_asc","year_desc", "added_asc", "added_desc"])
 
 
 @app.route("/lisaa_viite", methods=["GET", "POST"])
