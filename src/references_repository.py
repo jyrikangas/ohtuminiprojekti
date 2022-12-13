@@ -1,18 +1,19 @@
+import datetime
 from bibtexparser.bwriter import BibTexWriter
 from bibtexparser.bibdatabase import BibDatabase
-import datetime
+
 def get_references(db_conn):
     database_connection = db_conn
     cursor = database_connection.cursor()
 
-    cursor.execute("SELECT id, author, title, year, publisher, addedDate, tag, refname FROM book;")
+    cursor.execute("SELECT id, author, title, year, publisher, date, tag, refname FROM book;")
     references = cursor.fetchall()
     return references
 
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
     print(tag)
-    if tag is None or tag == "all":
+    if tag == "all":
         cursor.execute('SELECT * FROM book')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
@@ -21,7 +22,7 @@ def get_references_by_tag(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_year_asc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or tag == "all":
+    if tag == "all":
         cursor.execute('select * FROM book ORDER BY year ASC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year ASC', [tag])
@@ -30,7 +31,7 @@ def get_references_by_tag_and_sort_by_year_asc(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_year_desc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or  tag == "all":
+    if tag == "all":
         cursor.execute('select * FROM book ORDER BY year DESC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year DESC', [tag])
@@ -39,19 +40,19 @@ def get_references_by_tag_and_sort_by_year_desc(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_added_asc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or tag == "all":
-        cursor.execute('select * FROM book ORDER BY addedDate ASC')
+    if tag == "all":
+        cursor.execute('select * FROM book ORDER BY date ASC')
     else:
-        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate ASC', [tag])
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY date ASC', [tag])
     filtered_references = cursor.fetchall()
     return filtered_references
 
 def get_references_by_tag_and_sort_by_added_desc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or tag == "all":
-        cursor.execute('select * FROM book ORDER BY addedDate DESC')
+    if tag == "all":
+        cursor.execute('select * FROM book ORDER BY date DESC')
     else:
-        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate DESC', [tag])
+        cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY date DESC', [tag])
     filtered_references = cursor.fetchall()
     return filtered_references
 
@@ -92,12 +93,12 @@ def add_book(author, title, year, publisher, tag, refname, db_conn):
 
     if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1 or len(refname) < 1:
         return "Syötteen pituus on oltava yli 1"
-    addedDate = datetime.datetime.now()
+    date = datetime.datetime.now()
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
-        'INSERT INTO book (author, title, year, publisher, addedDate, tag, refname) VALUES (?, ?, ?, ?, ?, ?, ?)',
-        (author, title, year, publisher, addedDate, tag, refname)
+        'INSERT INTO book (author, title, year, publisher, date, tag, refname) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (author, title, year, publisher, date, tag, refname)
     )
     conn.commit()
     return True
@@ -130,11 +131,11 @@ def get_unique_tags(db_conn):
     return tags
 
 def generate_bibtex(references):
-    db = BibDatabase()
-    db.entries = []
+    bib_db = BibDatabase()
+    bib_db.entries = []
     for reference in references:
 
-        db.entries.append({
+        bib_db.entries.append({
             'ID': reference[7],
             'author': reference[1],
             'title': reference[2],
@@ -144,5 +145,5 @@ def generate_bibtex(references):
         })
     writer = BibTexWriter()
     writer.entry_separator = ';\n'
-    bibtex = writer.write(db)
+    bibtex = writer.write(bib_db)
     return bibtex.split(';\n')

@@ -23,7 +23,7 @@ def check_db():
             title TEXT, 
             year INTEGER, 
             publisher TEXT,
-            addedDate TIMESTAMP,
+            date TIMESTAMP,
             tag TEXT,
             refname TEXT
         )
@@ -38,10 +38,10 @@ def insert_model_books_into_db():
     
     insert_query = """
         INSERT INTO book (
-            author, title, year, publisher, addedDate, tag, refname
+            author, title, year, publisher, date, tag, refname
         ) 
         VALUES (
-            :author, :title, :year, :publisher, :addedDate, :tag, :refname
+            :author, :title, :year, :publisher, :date, :tag, :refname
         );
         """
     book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "addedDate":addedDate, "tag":"computer science", "refname":"CleanCode"}

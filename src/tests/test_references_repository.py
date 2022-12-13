@@ -12,7 +12,7 @@ class TestReferencesRepository(unittest.TestCase):
         cur = self.conn.cursor()
         cur.execute("DROP TABLE IF EXISTS book")
         cur.execute(
-            "CREATE TABLE book (id INTEGER PRIMARY KEY, author TEXT, title TEXT, year INTEGER, publisher TEXT, addedDate timestamp, tag TEXT, refname TEXT)"
+            "CREATE TABLE book (id INTEGER PRIMARY KEY, author TEXT, title TEXT, year INTEGER, publisher TEXT, date timestamp, tag TEXT, refname TEXT)"
             )
         cur.execute(
             "INSERT INTO book (author, title, year, publisher, tag, refname) VALUES ('Martin, Robert', 'Clean Code: A Handbook of Agile Software Craftsmanship', 2008, 'Prentice Hall', 'computer science', 'CleanCode')"
