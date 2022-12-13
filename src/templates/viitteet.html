@@ -11,10 +11,6 @@
     </nav>
     <h1 id="welcome_text">Nykyiset viitteet</h1>
     <div class="tag_form">
-        {% set url = url_for(request.endpoint) %}
-        {% if url != "/viitteet/sort_by_year/": %}
-        <input class=""type="button" id="sort_by_year" onclick="parent.location='sort_by_year/'" value="lajittele vuoden mukaan">
-        {% endif %}
         <div class="sort">
             <form action="/viitteet" method="GET">
                 <select name="tag" id="tag">
