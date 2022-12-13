@@ -28,6 +28,7 @@ Click Remove Reference
     Go To References Page
     Click Link  Poista viite
     References Page Should Be Open
+    Page Should Contain  Viite poistettu onnistuneesti
 
 Add References
     Go To Add References Page
@@ -35,8 +36,11 @@ Add References
     Set Title  The Hobbit
     Set Year  2011
     Set Publisher  Harpercollins
+    Set Tag  Fiction
+    Set ID  Lotr
     Submit Credentials
     References Page Should Be Open
+    Page Should Contain  Viite lisätty onnistuneesti
 
 *** Keywords ***
 
@@ -58,3 +62,11 @@ Set Year
 Set Publisher
     [Arguments]  ${publisher}
     Input Text  publisher  ${publisher}
+
+Set Tag
+    [Arguments]  ${tag}
+    Input Text  tag  ${tag}
+
+Set ID
+    [Arguments]  ${refname}
+    Input Text  refname  ${refname}
