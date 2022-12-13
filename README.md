@@ -15,7 +15,7 @@ Ensimmäisellä välilehdellä product backlog, toisella välilehdellä 1. sprin
 - Toteutettu hyväksymiskriteerien mukaisesti
 - Asiakkaan käytettävissä
 - Dokumentoitu
-- Testattu kattavasti
+- Testattu kattavasti (>80%)
 
 # Ohjelman käyttö lokaalisti
 
