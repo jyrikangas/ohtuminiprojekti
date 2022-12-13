@@ -5,7 +5,7 @@ def get_references(db_conn):
     database_connection = db_conn
     cursor = database_connection.cursor()
 
-    cursor.execute("SELECT id, author, title, year, publisher, tag, refname FROM book;")
+    cursor.execute("SELECT id, author, title, year, publisher, addedDate, tag, refname FROM book;")
     references = cursor.fetchall()
     return references
 
@@ -134,7 +134,7 @@ def generate_bibtex(references):
     db.entries = []
     for reference in references:
         db.entries.append({
-            'ID': reference[6],
+            'ID': reference[7],
             'author': reference[1],
             'title': reference[2],
             'year': str(reference[3]),
