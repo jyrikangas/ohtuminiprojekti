@@ -12,7 +12,7 @@ def get_references(db_conn):
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
     print(tag)
-    if tag is None:
+    if tag is None or "all":
         cursor.execute('SELECT * FROM book')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=?', [tag])

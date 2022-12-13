@@ -32,7 +32,7 @@ def download_bibtex():
 def list_references():
     tag = request.args.get('tag')
     if tag == None:
-        tag = ""
+        tag = "all"
     error = request.args.get('error')
     sort = request.args.get('sort')
     references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
