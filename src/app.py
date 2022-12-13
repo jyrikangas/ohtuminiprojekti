@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, redirect, Response
 from references_repository import get_references, add_book, delete_book, get_reference_by_id
-from references_repository import get_unique_tags, get_references_by_tag_and_sort, get_references_by_tag
+from references_repository import get_unique_tags, get_references_by_tag_and_sort
 from references_repository import generate_bibtex
 from database import the_db_connection
 from init_db import check_db
@@ -71,21 +71,6 @@ def delete_viite():
         return redirect("/viitteet/?error=" + deleted)
 
     return redirect("/viitteet/?error=" + "Viite poistettu onnistuneesti")
-
-
-@app.route("/viitteet/sort_by_year/")
-def sort_by_year():
-    tag = request.args.get('tag')
-    if tag is None:
-        tag = "all"
-    if tag == "all":
-        references = get_references(the_db_connection)
-    else:
-        references = get_references_by_tag(tag, the_db_connection)
-    tags = get_unique_tags(the_db_connection)
-    sorted_references = sorted(references, key=lambda viite: viite[3])
-    return render_template("viitteet.html", viitteet=sorted_references, tags=tags)
-
 
 if __name__ == "__main__":
     app.run(debug=True)
