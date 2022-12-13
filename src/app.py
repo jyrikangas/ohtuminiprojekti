@@ -50,7 +50,7 @@ def add_viite():
         title = request.form["title"]
         year = int(request.form["year"])
         publisher = request.form["publisher"]
-        tag = request.form["tag"]
+        tag = request.form["tag"].replace(" ", "_")
 
         refname = request.form["refname"]
         added_book = add_book(author, title, year, publisher, tag, refname, the_db_connection)

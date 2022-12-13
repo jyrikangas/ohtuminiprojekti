@@ -35,6 +35,7 @@
                             <label for="tag">Tägi</label>
                             <select name="tag" id="tag" class="flex_sort">
                                 {% for tag in tags %}
+
                                     {% if tag[0]|length > 0 %}
                                         <option value={{ tag[0] }}> {{tag[0] }}</option>
                                     {% endif %}
