@@ -41,11 +41,11 @@ Show References With Tag Fiction
 
 Select All Tags
     Select From List By Value  name:tag  all
-    Click Button  näytä vain viitteet joilla on tämä tagi
+    Click Button  Suodata
 
 Select Tag Fiction
     Select From List By Value  name:tag  Fiction
-    Click Button  näytä vain viitteet joilla on tämä tagi
+    Click Button  Suodata
 
 Submit Data
     Click Button  Lisää

@@ -19,7 +19,7 @@ Can Sort By Added Date
 ***Keywords***
 
 Submit Sort
-    Click Button  järjestä
+    Click Button  Suodata
 
 References Should Be Sorted By Year Ascending
     Location Should Contain  ?sort=year_asc
