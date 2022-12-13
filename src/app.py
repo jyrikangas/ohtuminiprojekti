@@ -14,9 +14,9 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/viitteet/download_bibtex")
+@app.route("/viitteet/download")
 def download_bibtex():
-    viite_id = request.args.get("viite_id")
+    viite_id = request.args.get("id")
     references = get_reference_by_id(viite_id, the_db_connection)
     print(references)
     if viite_id is None:
@@ -64,7 +64,7 @@ def add_viite():
 
 @app.route("/poista_viite")
 def delete_viite():
-    viite = request.args.get("viite_id")
+    viite = request.args.get("id")
     deleted = delete_book(viite, the_db_connection)
     if deleted is not True:
 

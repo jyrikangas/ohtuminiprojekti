@@ -5,17 +5,21 @@
     color: #444;
 }
 
+#main {
+    margin-left: 2rem;
+}
+
 #welcome_text {
     font-size: 2em;
     font-weight: 300;
-    margin: 0.67em 2rem;
+    margin: 0.67em 0;
 }
 
 .container {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    margin: auto 2rem;
+    margin: auto 0;
 }
 
 .page {
@@ -60,6 +64,7 @@
     align-items: center;
     gap: 1rem;
     padding: 1rem 2rem;
+    margin-left: 0;
     background-color: #e5e5e5;
 }
 
@@ -72,33 +77,51 @@
     color: #000;
 }
 
-.viite {
-    margin: 2rem;
-}
-
 .viite p {
     margin: 0.5rem 0;
 }
 
-.viite .rmbtn a {
+.buttons {
+    display: flex;
+    margin: 1rem 0;
+    gap: 0.5rem;
+}
+
+.dlbtn a {
     text-decoration: none;
-    background-color: red;
+    background-color: rgb(12, 88, 0);
     color: white;
     padding: 0.5rem;
     border-radius: 5px;
 }
 
-.viite .rmbtn {
-    margin: 1rem 0;
+.rmbtn a {
+    text-decoration: none;
+    background-color: rgb(174, 0, 0);
+    color: rgb(255, 255, 255);
+    padding: 0.5rem;
+    border-radius: 5px;
 }
 
+
 .error {
-    color: rgb(247, 0, 255);
-    margin-left: 2rem;
-    margin-top: 2rem;
+    color: rgb(0, 3, 189);
+    margin: 2rem 0 1rem 0;
     font-weight: bold;
 }
 
-.tag_form {
-    margin: auto 2rem;
+.sort {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin: auto 0;
+}
+
+.sort_container {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex_sort {
+    flex-basis: auto;
 }

@@ -10,46 +10,48 @@
         <a class="navbar__link" href="/viitteet/">Viitteet</a>
         <a class="navbar__link" href="/lisaa_viite">Uusi</a>
     </nav>
-    <h1 id="welcome_text">Lisää uusi viite</h1>
-    {% if error %}
-        <p class="error">{{ error }}</p>
-    {% endif %}
-    <div class="container">
-        <form action="/lisaa_viite" method="POST">
-            <div class="form_control">
-                <label for="Auth">Author:</label><br>
-                <input type="text" id="Auth" name="author" required>
-            </div>
+    <div id="main">
+        <h1 id="welcome_text">Lisää uusi viite</h1>
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+        <div class="container">
+            <form action="/lisaa_viite" method="POST">
+                <div class="form_control">
+                    <label for="Auth">Author:</label><br>
+                    <input type="text" id="Auth" name="author" required>
+                </div>
 
-            <div class="form_control">
-                <label for="Title">Title:</label><br>
-                <input type="text" id="Title" name="title" required>
-            </div>
+                <div class="form_control">
+                    <label for="Title">Title:</label><br>
+                    <input type="text" id="Title" name="title" required>
+                </div>
+                
+                <div class="form_control">
+                    <label for="Year">Year:</label><br>
+                    <input type="number" id="Year" name="year" required>
+                </div>
+                
+                <div class="form_control">
+                    <label for="Publ">Publisher:</label><br>
+                    <input type="text" id="Publ" name="publisher" required>
+                </div>
+
+                <div class="form_control">
+                    <label for="Tag">Tag:</label><br>
+                    <input type="text" id="Tag" name="tag">
+                </div>
+
+                <div class="form_control">
+                    <label for="Refname">ID:</label><br>
+                    <input type="text" id="Refname" name="refname" required>
+                </div>
+
+                <div class="form_control btn">
+                    <input type="submit" value="Lisää">
+                </div>
             
-            <div class="form_control">
-                <label for="Year">Year:</label><br>
-                <input type="number" id="Year" name="year" required>
-            </div>
-            
-            <div class="form_control">
-                <label for="Publ">Publisher:</label><br>
-                <input type="text" id="Publ" name="publisher" required>
-            </div>
-
-            <div class="form_control">
-                <label for="Tag">Tag:</label><br>
-                <input type="text" id="Tag" name="tag">
-            </div>
-
-            <div class="form_control">
-                <label for="Refname">ID:</label><br>
-                <input type="text" id="Refname" name="refname" required>
-            </div>
-
-            <div class="form_control btn">
-                <input type="submit" value="Lisää">
-            </div>
-        
-        </form>
+            </form>
+        </div>
     </div>
 </body>
