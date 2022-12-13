@@ -6,7 +6,7 @@ from database import get_db_connection
 
 class TestReferencesRepository(unittest.TestCase):
     def setUp(self):
-        self.data = [('Martin, Robert', 'Clean Code: A Handbook of Agile Software Craftsmanship', 2008, 'Prentice Hall', datetime.datetime.now(), 'computer science', 'CleanCode')]
+        self.data = [('Martin, Robert', 'Clean Code: A Handbook of Agile Software Craftsmanship', 2008, 'Prentice Hall', datetime.datetime.now(), 'computer_science', 'CleanCode')]
         self.conn = get_db_connection(test=True)
 
         cursor = self.conn.cursor()
@@ -23,9 +23,9 @@ class TestReferencesRepository(unittest.TestCase):
                 :author, :title, :year, :publisher, :tag, :refname
             );
             """
-        book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "date":datetime.datetime.now(), "tag":"computer science", "refname":"CleanCode"}
+        book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "date":datetime.datetime.now(), "tag":"computer_science", "refname":"CleanCode"}
         book2 = {"author": "Tolkien, John", "title":"The Lord of the Rings", "year":1954, "publisher":"Allen & Unwin", "date":datetime.datetime.now(), "tag":"fiction", "refname":"Lotr"}
-        book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley", "date":datetime.datetime.now(), "tag":"computer science", "refname":"DesignPatterns"}
+        book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley", "date":datetime.datetime.now(), "tag":"computer_science", "refname":"DesignPatterns"}
 
         cursor.execute(insert_query, book1)
         cursor.execute(insert_query, book2)
@@ -90,32 +90,47 @@ class TestReferencesRepository(unittest.TestCase):
         self.assertEqual(deleted, 'Kirjan poistamisessa tapahtui virhe')
 
     def test_get_correct_references_by_tag(self):
-        tag = "computer science"
+        tag = "computer_science"
         self.assertTrue(len(get_references_by_tag(tag, self.conn)) == 2)
 
+        tag = "all"
+        self.assertTrue(len(get_references_by_tag(tag, self.conn)) == 3)
+
     def test_get_correct_references_by_tag_and_sort_by_year_asc(self):
-        tag = "computer science"
+        tag = "computer_science"
         references = get_references(self.conn)
         self.assertEqual(get_references_by_tag_and_sort_by_year_asc(tag, self.conn)[0][0], references[2][0])
 
+        tag = "all"
+        references = get_references(self.conn)
+        self.assertEqual(get_references_by_tag_and_sort_by_year_asc(tag, self.conn)[1][0], references[2][0])
+
     def test_get_correct_references_by_tag_and_sort_by_year_desc(self):
-        tag = "computer science"
+        tag = "computer_science"
+        references = get_references(self.conn)
+        self.assertEqual(get_references_by_tag_and_sort_by_year_desc(tag, self.conn)[0][0], references[0][0])
+
+        tag = "all"
         references = get_references(self.conn)
         self.assertEqual(get_references_by_tag_and_sort_by_year_desc(tag, self.conn)[0][0], references[0][0])
 
     def test_get_correct_references_by_tag_and_sort_by_added_desc(self):
-        tag = "computer science"
+        tag = "computer_science"
+        references = get_references(self.conn)
+        self.assertEqual(get_references_by_tag_and_sort_by_added_desc(tag, self.conn)[0][0], references[0][0])
+
+        tag = "all"
         references = get_references(self.conn)
         self.assertEqual(get_references_by_tag_and_sort_by_added_desc(tag, self.conn)[0][0], references[0][0])
 
     def test_get_references_by_tag_and_sort_asc(self):
-        tag = "computer science"
+        tag = "computer_science"
         sort = "year_asc"
         references = get_references(self.conn)
         self.assertEqual(get_references_by_tag_and_sort(tag, sort, self.conn)[0][0],references[2][0])
 
     def test_get_references_by_tag_and_sort_desc(self):
-        tag = "computer science"
+        tag = "computer_science"
         sort = "year_desc"
         references = get_references(self.conn)
         self.assertEqual(get_references_by_tag_and_sort(tag, sort, self.conn)[0][0],references[0][0])
@@ -128,6 +143,20 @@ class TestReferencesRepository(unittest.TestCase):
         apulista = []
         apulista.append(correct_bibtex)
         self.assertEqual(bibtex, apulista)
+
+    def test_get_tags(self):
+        tags = get_tags(self.conn)
+        print("test")
+        print(tags)
+        self.assertTrue(len(tags) == 3)
+        self.assertEqual(tags[0][0], 'computer_science')
+
+    def test_get_unique_tags(self):
+        tags = get_unique_tags(self.conn)
+        self.assertTrue(len(tags) == 2)
+        self.assertEqual(tags[0][0], 'computer_science')
+
+
 
 
 

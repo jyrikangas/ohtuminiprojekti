@@ -40,7 +40,7 @@ def list_references():
     error = request.args.get('error')
     sort = request.args.get('sort')
     references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
-    tags = get_unique_tags(the_db_connection)
+    tags = [("all",), get_unique_tags(the_db_connection)]
     
     bibtex = generate_bibtex(references)
     sorts = ["year_asc", "year_desc", "added_asc", "added_desc"]
