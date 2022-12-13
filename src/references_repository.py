@@ -12,7 +12,6 @@ def get_references(db_conn):
 
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
-    print(tag)
     if tag == "all":
         cursor.execute('SELECT * FROM book')
     else:
@@ -57,7 +56,6 @@ def get_references_by_tag_and_sort_by_added_desc(tag, db_conn):
     return filtered_references
 
 def get_references_by_tag_and_sort(tag, sort, db_conn):
-    print(sort)
     if sort == "year_asc":
         filtered_references = get_references_by_tag_and_sort_by_year_asc(tag, db_conn)
     elif sort == "year_desc":
@@ -68,7 +66,6 @@ def get_references_by_tag_and_sort(tag, sort, db_conn):
         filtered_references = get_references_by_tag_and_sort_by_added_desc(tag, db_conn)
     elif sort is None:
         filtered_references = get_references_by_tag(tag, db_conn)
-    print(filtered_references)
     return filtered_references
 
 
@@ -93,7 +90,7 @@ def add_book(author, title, year, publisher, tag, refname, db_conn):
 
     if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1 or len(refname) < 1:
         return "Syötteen pituus on oltava yli 1"
-    date = datetime.datetime.now()
+    date = datetime.date.today()
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
@@ -128,7 +125,6 @@ def get_unique_tags(db_conn):
     for tag in all_tags:
         if tag not in tags:
             tags.append(tag)
-    print(tags)
     return tags
 
 def generate_bibtex(references):
@@ -146,5 +142,6 @@ def generate_bibtex(references):
         })
     writer = BibTexWriter()
     writer.entry_separator = ';\n'
+    writer.order_entries_by = None
     bibtex = writer.write(bib_db)
     return bibtex.split(';\n')
