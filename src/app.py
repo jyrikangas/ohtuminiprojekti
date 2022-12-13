@@ -31,6 +31,8 @@ def download_bibtex():
 @app.route("/viitteet/")
 def list_references():
     tag = request.args.get('tag')
+    if tag == None:
+        tag = ""
     error = request.args.get('error')
     sort = request.args.get('sort')
     references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
@@ -46,7 +48,8 @@ def add_viite():
         year = int(request.form["year"])
         publisher = request.form["publisher"]
         tag = request.form["tag"]
-        added_book = add_book(author, title, year, publisher, tag, the_db_connection)
+        refname = request.form["refname"]
+        added_book = add_book(author, title, year, publisher, tag, refname, the_db_connection)
         if added_book is not True:
             return render_template("lisaa_viite.html", error=added_book)
 
