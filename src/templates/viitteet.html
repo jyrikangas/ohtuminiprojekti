@@ -11,29 +11,38 @@
     </nav>
     <div id="main">
         <h1 id="welcome_text">Nykyiset viitteet</h1>
+
+        <div class="buttons">
+            <div class="dlbtn">
+                <a href="/viitteet/download">Lataa kaikki viitteet bibtex-muodossa</a>
+            </div>
+        </div>
         <div class="tag_form">
             <div class="sort">
-                <form action="/viitteet" method="GET">
-                    <select name="tag" id="tag">
-                        {% for tag in tags %}
-                            {% if tag[0]|length > 0 %}
-                                <option value={{ tag[0] }}> {{tag[0] }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="näytä vain viitteet joilla on tämä tagi">
-                </form>
-            </div>
-            <div class="sort">
-                <form action="/viitteet" method="GET">
-                    <select name="sort" id="sort">
-                        {% for sort in sorts %}
-                            
-                            <option value={{ sort }}> {{ sort }}</option>
-                            
-                        {% endfor %}
-                    </select>
-                    <input type="submit" value="järjestä">
+                <form action="/viitteet" method="GET" class="sort_form">
+                    <div class="sort_fields">
+                        <div class="sort_container">
+                            <label for="sort">Järjestys</label>
+                            <select name="sort" id="sort" class="flex_sort">
+                                {% for sort in sorts %}
+            
+                                    <option value={{ sort }}> {{ sort }}</option>
+            
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="sort_container">
+                            <label for="tag">Tägi</label>
+                            <select name="tag" id="tag" class="flex_sort">
+                                {% for tag in tags %}
+                                    {% if tag[0]|length > 0 %}
+                                        <option value={{ tag[0] }}> {{tag[0] }}</option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                    </div>
+                    <input type="submit" value="Suodata" class="fbtn">
                 </form>
             </div>
         </div>
@@ -42,11 +51,7 @@
             Download all viitteet as a bibtex
         -->
 
-        <div class="buttons">
-            <div class="dlbtn">
-                <a href="/viitteet/download">Lataa kaikki</a>
-            </div>
-        </div>
+        
 
         {% if error %}
             <p class="error">{{ error }}</p>
