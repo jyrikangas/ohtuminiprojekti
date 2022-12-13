@@ -34,7 +34,8 @@ def check_db():
 def insert_model_books_into_db():
     connection = the_db_connection
     cursor = connection.cursor()
-    date = datetime.datetime.now()
+    date = datetime.date.today()
+    print(date)
     
     insert_query = """
         INSERT INTO book (
