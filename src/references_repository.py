@@ -133,6 +133,7 @@ def generate_bibtex(references):
     db = BibDatabase()
     db.entries = []
     for reference in references:
+
         db.entries.append({
             'ID': reference[7],
             'author': reference[1],
