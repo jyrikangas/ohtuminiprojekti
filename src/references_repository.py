@@ -121,7 +121,7 @@ def get_tags(db_conn):
 
 def get_unique_tags(db_conn):
     all_tags = get_tags(db_conn)
-    tags = []
+    tags = [("all",)]
     for tag in all_tags:
         if tag not in tags:
             tags.append(tag)

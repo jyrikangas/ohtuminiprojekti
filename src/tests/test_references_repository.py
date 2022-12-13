@@ -153,6 +153,7 @@ class TestReferencesRepository(unittest.TestCase):
 
     def test_get_unique_tags(self):
         tags = get_unique_tags(self.conn)
+        tags = list(filter(lambda x : x[0] != 'all', tags))
         self.assertTrue(len(tags) == 2)
         self.assertEqual(tags[0][0], 'computer_science')
 
