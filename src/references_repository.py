@@ -5,14 +5,14 @@ def get_references(db_conn):
     database_connection = db_conn
     cursor = database_connection.cursor()
 
-    cursor.execute("SELECT id, author, title, year, publisher, tag FROM book;")
+    cursor.execute("SELECT id, author, title, year, publisher, addedDate, tag, refname FROM book;")
     references = cursor.fetchall()
     return references
 
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
     print(tag)
-    if tag is None:
+    if tag is None or "all":
         cursor.execute('SELECT * FROM book')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
@@ -77,7 +77,7 @@ def get_reference_by_id(viite_id, db_conn):
     reference = cursor.fetchall()
     return reference
 
-def add_book(author, title, year, publisher, tag, db_conn):
+def add_book(author, title, year, publisher, tag, refname, db_conn):
     if not isinstance(year, int):
         return "Vuoden on oltava numero"
 
@@ -90,14 +90,14 @@ def add_book(author, title, year, publisher, tag, db_conn):
     if not isinstance(publisher, str):
         return "Julkaisijan on oltava merkkijono"
 
-    if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1:
+    if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1 or len(refname) < 1:
         return "Syötteen pituus on oltava yli 1"
     addedDate = datetime.datetime.now()
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
-        'INSERT INTO book (author, title, year, publisher, addedDate, tag) VALUES (?, ?, ?, ?, ?, ?)',
-        (author, title, year, publisher, addedDate, tag)
+        'INSERT INTO book (author, title, year, publisher, addedDate, tag, refname) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        (author, title, year, publisher, addedDate, tag, refname)
     )
     conn.commit()
     return True
@@ -134,7 +134,7 @@ def generate_bibtex(references):
     db.entries = []
     for reference in references:
         db.entries.append({
-            'ID': 'viite',
+            'ID': reference[7],
             'author': reference[1],
             'title': reference[2],
             'year': str(reference[3]),
