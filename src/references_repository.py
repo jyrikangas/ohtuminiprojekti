@@ -90,7 +90,7 @@ def add_book(author, title, year, publisher, tag, refname, db_conn):
 
     if len(author) < 1 or len(title) < 1 or year < 1 or len(publisher) < 1 or len(refname) < 1:
         return "Syötteen pituus on oltava yli 1"
-    date = datetime.date.today()
+    date = datetime.datetime.now()
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
