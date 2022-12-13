@@ -97,7 +97,9 @@ def add_book(author, title, year, publisher, tag, refname, db_conn):
     conn = db_conn
     cursor = conn.cursor()
     cursor.execute(
-        'INSERT INTO book (author, title, year, publisher, date, tag, refname) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        """INSERT INTO
+        book (author, title, year, publisher, date, tag, refname)
+        VALUES (?, ?, ?, ?, ?, ?, ?)""",
         (author, title, year, publisher, date, tag, refname)
     )
     conn.commit()
