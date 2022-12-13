@@ -44,9 +44,9 @@ def insert_model_books_into_db():
             :author, :title, :year, :publisher, :date, :tag, :refname
         );
         """
-    book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "date":date, "tag":"computer science", "refname":"CleanCode"}
+    book1 = {"author": "Martin, Robert", "title":"Clean Code: A Handbook of Agile Software Craftsmanship", "year":2008, "publisher":"Prentice Hall", "date":date, "tag":"computer_science", "refname":"CleanCode"}
     book2 = {"author": "Tolkien, John", "title":"The Lord of the Rings", "year":1954, "publisher":"Allen & Unwin", "date":date, "tag":"fiction", "refname":"Lotr"}
-    book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley", "date":date, "tag":"computer science", "refname":"DesignPatterns"}
+    book3 = {"author": "Erich Gamma, Richard Helm, Ralph Johnson, John Vlissides, Grady Booch", "title":"Design Patterns: Elements of Reusable Object-Oriented Software, 1st Edition", "year":1994, "publisher":"Addison-Wesley", "date":date, "tag":"computer_science", "refname":"DesignPatterns"}
 
     cursor.execute(insert_query, book1)
     cursor.execute(insert_query, book2)
