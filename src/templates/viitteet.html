@@ -14,7 +14,7 @@
 
         <div class="buttons">
             <div class="dlbtn">
-                <a href="/viitteet/download">Lataa kaikki viitteet bibtex-muodossa</a>
+                <a href="/viitteet/download?tag={{request.args.get('tag')}}&sort={{request.args.get('sort')}}">Lataa kaikki viitteet bibtex-muodossa</a>
             </div>
         </div>
         <div class="tag_form">
@@ -25,8 +25,8 @@
                             <label for="sort">Järjestys</label>
                             <select name="sort" id="sort" class="flex_sort">
                                 {% for sort in sorts %}
-            
-                                    <option value={{ sort }}> {{ sort }}</option>
+        
+                                    <option value={{ sort }} {{ 'selected' if request.args.get('sort')==sort }}> {{ sort }}</option>
             
                                 {% endfor %}
                             </select>
@@ -35,9 +35,8 @@
                             <label for="tag">Tägi</label>
                             <select name="tag" id="tag" class="flex_sort">
                                 {% for tag in tags %}
-
                                     {% if tag[0]|length > 0 %}
-                                        <option value={{ tag[0] }}> {{tag[0] }}</option>
+                                        <option value={{ tag[0] }} {{ 'selected' if request.args.get('tag')==tag[0] }}> {{ tag[0] }}</option>
                                     {% endif %}
                                 {% endfor %}
                             </select>

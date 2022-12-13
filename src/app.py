@@ -14,13 +14,15 @@ def index():
     return render_template("index.html")
 
 
-@app.route("/viitteet/download")
+@app.route("/viitteet/download", strict_slashes=False)
 def download_bibtex():
     viite_id = request.args.get("id")
+    
     references = get_reference_by_id(viite_id, the_db_connection)
-    print(references)
     if viite_id is None:
-        references = get_references(the_db_connection)
+        tag = request.args.get("tag")
+        sort = request.args.get("sort")
+        references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
 
     bibtex = generate_bibtex(references)
     return Response(
@@ -30,7 +32,7 @@ def download_bibtex():
                  "attachment; filename=references.bib"})
 
 
-@app.route("/viitteet/")
+@app.route("/viitteet", strict_slashes=False)
 def list_references():
     tag = request.args.get('tag')
     if tag is None:
@@ -39,6 +41,7 @@ def list_references():
     sort = request.args.get('sort')
     references = get_references_by_tag_and_sort(tag, sort, the_db_connection)
     tags = get_unique_tags(the_db_connection)
+    
     bibtex = generate_bibtex(references)
     sorts = ["year_asc", "year_desc", "added_asc", "added_desc"]
     ref_bibtex = zip(references, bibtex)
@@ -51,7 +54,7 @@ def list_references():
         )
 
 
-@app.route("/lisaa_viite", methods=["GET", "POST"])
+@app.route("/lisaa_viite", methods=["GET", "POST"], strict_slashes=False)
 def add_viite():
     if request.method == "POST":
         author = request.form["author"]
@@ -70,7 +73,7 @@ def add_viite():
     return render_template("lisaa_viite.html")
 
 
-@app.route("/poista_viite")
+@app.route("/poista_viite", strict_slashes=False)
 def delete_viite():
     viite = request.args.get("id")
     deleted = delete_book(viite, the_db_connection)

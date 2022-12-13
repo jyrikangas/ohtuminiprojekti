@@ -5,7 +5,7 @@
 
 # Linkit 
 
-- [Tästä](https://ohtuminiprojekti.fly.dev:5000/) sovellukseen.
+- [Tästä]([https://ohtumini.fly.dev:5000/](https://ohtumini4.fly.dev:5000)) sovellukseen.
 - [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. 
 Ensimmäisellä välilehdellä product backlog, toisella välilehdellä 1. sprintin backlog ja kolmannella välilehdellä 2. sprintin backlog. 
 - [Tästä](https://app.codecov.io/gh/jyrikangas/ohtuminiprojekti) testikattavuusraporttiin.
