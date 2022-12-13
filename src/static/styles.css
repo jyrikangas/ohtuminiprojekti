@@ -49,8 +49,7 @@
 
 .btn {
     margin-left: 0.5rem;
-    
-
+    cursor: pointer;
 }
 
 .btn:hover {
@@ -58,6 +57,7 @@
     border: 1px solid black;
     border-radius: 5px;
     cursor: pointer;
+    width: 350px;
 }
 
 .navbar {
