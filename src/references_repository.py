@@ -120,16 +120,15 @@ def get_tags(db_conn):
     cursor = conn.cursor()
     cursor.execute('SELECT tag FROM book')
     tags = cursor.fetchall()
-    print(tags)
     return tags
 
 def get_unique_tags(db_conn):
     all_tags = get_tags(db_conn)
-    tags = []
+    tags = [("all",)]
     for tag in all_tags:
         if tag not in tags:
             tags.append(tag)
-    tags.append(('all',))
+    print(tags)
     return tags
 
 def generate_bibtex(references):
