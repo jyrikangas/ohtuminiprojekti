@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, Response
-from references_repository import get_references, add_book, delete_book, get_reference_by_id
+from references_repository import add_book, delete_book, get_reference_by_id
 from references_repository import get_unique_tags, get_references_by_tag_and_sort
 from references_repository import generate_bibtex
 from database import the_db_connection
@@ -17,7 +17,6 @@ def index():
 @app.route("/viitteet/download", strict_slashes=False)
 def download_bibtex():
     viite_id = request.args.get("id")
-    
     references = get_reference_by_id(viite_id, the_db_connection)
     if viite_id is None:
         tag = request.args.get("tag")
