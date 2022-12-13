@@ -12,7 +12,7 @@ def get_references(db_conn):
 def get_references_by_tag(tag, db_conn):
     cursor = db_conn.cursor()
     print(tag)
-    if tag is None or "all":
+    if tag is None or tag == "all":
         cursor.execute('SELECT * FROM book')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=?', [tag])
@@ -21,7 +21,7 @@ def get_references_by_tag(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_year_asc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or "all":
+    if tag is None or tag == "all":
         cursor.execute('select * FROM book ORDER BY year ASC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year ASC', [tag])
@@ -30,7 +30,7 @@ def get_references_by_tag_and_sort_by_year_asc(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_year_desc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or "all":
+    if tag is None or  tag == "all":
         cursor.execute('select * FROM book ORDER BY year DESC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY year DESC', [tag])
@@ -39,7 +39,7 @@ def get_references_by_tag_and_sort_by_year_desc(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_added_asc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or "all":
+    if tag is None or tag == "all":
         cursor.execute('select * FROM book ORDER BY addedDate ASC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate ASC', [tag])
@@ -48,7 +48,7 @@ def get_references_by_tag_and_sort_by_added_asc(tag, db_conn):
 
 def get_references_by_tag_and_sort_by_added_desc(tag, db_conn):
     cursor = db_conn.cursor()
-    if tag is None or "all":
+    if tag is None or tag == "all":
         cursor.execute('select * FROM book ORDER BY addedDate DESC')
     else:
         cursor.execute('SELECT * FROM book WHERE tag=? ORDER BY addedDate DESC', [tag])

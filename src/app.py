@@ -33,7 +33,7 @@ def download_bibtex():
 @app.route("/viitteet/")
 def list_references():
     tag = request.args.get('tag')
-    if tag == None:
+    if tag is None:
         tag = "all"
     error = request.args.get('error')
     sort = request.args.get('sort')
