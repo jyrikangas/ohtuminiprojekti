@@ -78,7 +78,9 @@ class TestReferencesRepository(unittest.TestCase):
     def test_generate_bibtex(self):
         viite = get_reference_by_id('1', self.conn)
         bibtex = generate_bibtex(viite)
+
         correct_bibtex = """@book{CleanCode,\n author = {Martin, Robert},\n publisher = {Prentice Hall},\n title = {Clean Code: A Handbook of Agile Software Craftsmanship},\n year = {2008}\n}\n"""
-        print(bibtex)
-        print(correct_bibtex)
-        self.assertEqual(bibtex, correct_bibtex)
+        apulista = []
+        apulista.append(correct_bibtex)
+        self.assertEqual(bibtex, apulista)
+
