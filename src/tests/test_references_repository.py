@@ -44,27 +44,29 @@ class TestReferencesRepository(unittest.TestCase):
 
         self.assertEqual(added, 'Syötteen pituus on oltava yli 1')
 
-    def test_add_book_with_wrong_types(self):
+    def test_add_book_with_invalid_author(self):
         added = add_book(1000, 'TEsting is fun', 2000,
                          'Tester publishing', 'test', 'test', self.conn)
 
         self.assertEqual(added, 'Kirjailijan on oltava merkkijono')
 
+    def test_add_book_with_invalid_name(self):
         added = add_book('test', 1222, 2000,
                          'Tester publishing', 'test', 'test', self.conn)
 
         self.assertEqual(added, 'Otsikon on oltava merkkijono')
 
+    def test_add_book_with_invalid_year(self):
         added = add_book('test', 'test test', '2000',
                          'Tester publishing', 'test', 'test',self.conn)
 
         self.assertEqual(added, 'Vuoden on oltava numero')
 
+    def test_add_book_with_invalid_publisher(self):
         added = add_book('test', 'test test', 2000,
                          1222, 'test', 'test',self.conn)
 
         self.assertEqual(added, 'Julkaisijan on oltava merkkijono')
-
 
     def test_delete_book(self):
         delete_book('1', self.conn)
