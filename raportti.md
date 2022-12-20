@@ -1,9 +1,13 @@
 
 
 Ohtuminiprojekti raportti -- Ryhmä sike
+
 Jyri Kangas
+
 Veeti Ojanperä
+
 Lassi Munter
+
 Lotta Hyppyrä
 
 
