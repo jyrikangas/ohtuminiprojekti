@@ -1,14 +1,8 @@
 
 
-Ohtuminiprojekti raportti -- Ryhmä sike
+# Ohtuminiprojekti raportti -- Ryhmä sike
 
-Jyri Kangas
-
-Veeti Ojanperä
-
-Lassi Munter
-
-Lotta Hyppyrä
+## Jyri Kangas, Veeti Ojanperä, Lassi Munter, Lotta Hyppyrä
 
 
 Ensimmäinen sprintti alkoi hieman kaaoottisella suunnittelulla. Asiat alkoivat kuitenkin nopeasti rullaamaan, ja työskentely sujui hyvin. 
