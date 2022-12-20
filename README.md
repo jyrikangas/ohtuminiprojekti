@@ -4,7 +4,7 @@
 [![codecov](https://codecov.io/gh/jyrikangas/ohtuminiprojekti/branch/main/graph/badge.svg?token=l4SUeHezLk)](https://codecov.io/gh/jyrikangas/ohtuminiprojekti)
 
 # Linkit 
-
+- [Raportti](https://github.com/jyrikangas/ohtuminiprojekti/raportti.md)
 - [Tästä](https://ohtuminiappfinal.fly.dev:5000/) sovellukseen.
 - [Tästä](https://helsinkifi-my.sharepoint.com/:x:/g/personal/kajy_ad_helsinki_fi/Ef1LbjVAhbtOkqyw6ePnJrQBQsuSYnmgXV5_LpB7lgaqeA?e=40hfPr) backlogeihin. 
 Ensimmäisellä välilehdellä product backlog, toisella välilehdellä 1. sprintin backlog ja kolmannella välilehdellä 2. sprintin backlog. 
